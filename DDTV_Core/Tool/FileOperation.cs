@@ -108,12 +108,8 @@ namespace DDTV_Core.Tool
         public static string ReplaceKeyword(long uid, string Text)
         {
             Rooms.RoomInfo.TryGetValue(uid, out RoomInfoClass.RoomInfo roomInfo);
-
-            if (roomInfo.DownloadedFileInfo.FlvFile != null)
-                Text = Text.Replace("{FlvFile}", roomInfo.DownloadedFileInfo.FlvFile.FullName);
-
-            if (roomInfo.DownloadedFileInfo.Mp4File != null)
-                Text = Text.Replace("{MP4File}", roomInfo.DownloadedFileInfo.Mp4File.FullName);
+            
+            Text = Text.Replace("{FnFile}", (roomInfo.DownloadingList.Count > 0 ? roomInfo.DownloadingList[0].FileName : string.Empty));
 
             if (roomInfo.DownloadedFileInfo.DanMuFile != null)
                 Text = Text.Replace("{DanMuFile}", roomInfo.DownloadedFileInfo.DanMuFile.FullName);
